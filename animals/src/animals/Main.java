@@ -54,23 +54,24 @@ public class Main {
     System.out.println("\n*** List all the animals in descending order by year named ***");
     animals.sort((a1, a2) -> a2.getYear() - a1.getYear());
     System.out.println(animals);
+   
     System.out.println("\n*** List all the animals alphabetically ***");
     animals.sort((a1,a2) -> a1.getName().compareTo(a2.getName()));
     System.out.println(animals);
+    
     System.out.println("\n*** List all the animals ordered by how they move ***");
     animals.sort((a1,a2) -> a1.move().compareTo(a2.move()));
     System.out.println(animals);
+    
     System.out.println("\n*** List only those animals that breathe with lungs ***");
     filterAnimals(animals, a -> a.breathe().equals("lungs"));
+    
     System.out.println("\n*** List only those animals that breath with lungs and were named in 1758 ***");
     filterAnimals(animals, a -> a.breathe().equals("lungs") && a.getYear() == 1758);
+    
     System.out.println("\n*** List only those animals that lay eggs and breath with lungs ***");
-    // for (Animal a : animals) {
-    //   if (a.reproduce().equals("eggs") && a.breathe().equals("lungs")) {
-    //     System.out.println(a.getName() + " " + a.reproduce() + " " + a.move() + " " + a.breathe() + " " + a.getYear());
-    //   }
-    // }
     filterAnimals(animals, a -> a.reproduce().equals("eggs") && a.breathe().equals("lungs"));
+   
     System.out.println("\n*** List alphabetically only those animals that were named in 1758 ***");
 
     List<Animal> newList = new ArrayList<>();
@@ -84,5 +85,15 @@ public class Main {
     for (Animal a : newList) {
       System.out.println(a.getName() + " " + a.reproduce() + " " + a.move() + " " + a.breathe() + " " + a.getYear());
     }
+
+    System.out.println("\n*** Stretch Goal ***\n\n*** For the list of animals, list alphabetically those animals that are mammals ***");
+    List<Animal> lastList = new ArrayList<>();
+    for (Animal a : animals) {
+      if (a instanceof Mammal) {
+        lastList.add(a);
+      }
+    }
+    lastList.sort((a1,a2) -> a1.getName().compareTo(a2.getName()));
+    filterAnimals(lastList, a -> true);
   }
 }
